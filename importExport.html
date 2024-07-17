@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="dist/global.css">
+    <link rel="stylesheet" href="dist/importExport.css">
+    <link rel="stylesheet" href="dist/template.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <title>Import/Export Passwords</title>
+</head>
+<body>
+    <div id="main-container">
+        <!-- Container for the common template -->
+        <div id="common-template-container"></div>
+        <!-- Container for the import/export form -->
+        <div class="container" id="auth">
+            <div class="form-group">
+                <label for="import-source">Select Source</label>
+                <select id="import-source" name="import-source"></select>
+            </div>
+            <div class="form-group">
+                <label for="import-file">Import Passwords</label>
+                <input type="file" id="import-file" name="import-file" accept=".csv">
+                <button id="importButton"><i class="fas fa-file-upload"></i> Import</button>
+            </div>
+            <div class="form-group">
+                <label for="export-file">Export Passwords</label>
+                <button id="exportButton"><i class="fas fa-file-download"></i> Export</button>
+            </div>
+            <button id="backButton">Back</button>
+        </div>
+    </div>
+    <script src="dist/template.js"></script>
+    <script src="dist/importExport.js"></script>
+</body>
+</html>

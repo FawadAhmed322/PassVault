@@ -1,0 +1,154 @@
+/* Vault Styles */
+.container {
+    flex: 1; /* Ensure the container takes up remaining space */
+    padding: 10px; /* Add padding for some space around the content */
+    display: flex;
+    flex-direction: column; /* Ensure a column layout */
+    align-items: center; /* Center align items horizontally */
+    overflow: hidden; /* Prevent the container from scrolling */
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 3px; /* Reduced margin-bottom for less vertical padding */
+}
+
+#add-credential-btn, #delete-credential-btn {
+    background-color: #007bff; /* Change background to the primary color */
+    color: #fff; /* Change text color to white */
+    padding: 8px 15px; /* Adjust padding for better appearance */
+    border: solid;
+    border-width: 1px;
+    border-radius: 24px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Ensure content is centered */
+    font-weight: 600; /* Make the text bold */
+}
+
+#add-credential-btn i, #delete-credential-btn i {
+    margin-right: 8px; /* Add some space between the icon and text */
+    font-size: 16px; /* Adjust icon size */
+}
+
+#add-credential-btn {
+    background-color: #007bff; /* Change background to the primary color */
+    color: #fff; /* Change text color to white */
+    border-color: #007bff; /* Keep border color the same */
+}
+
+#add-credential-btn:hover {
+    background-color: #0056b3; /* Darken the background on hover */
+    color: #fff; /* Keep text color white on hover */
+}
+
+#delete-credential-btn {
+    background-color: #ff0000; /* Change background to the danger color */
+    color: #fff; /* Change text color to white */
+    border-color: #ff0000; /* Keep border color the same */
+}
+
+#delete-credential-btn:hover {
+    background-color: #cc0000; /* Darken the background on hover */
+    color: #fff; /* Keep text color white on hover */
+}
+
+.vault-contents {
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: auto; /* Allow vault-contents to scroll */
+    flex: 1; /* Ensure it takes up available space */
+    max-height: calc(100% - 70px); /* Adjust this value to set the height of the scrollable area */
+}
+
+/* Hide scrollbar for Webkit browsers (Chrome, Safari) */
+.vault-contents::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.vault-contents {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+
+.vault-contents .vault-item {
+    background-color: #e9ecef;
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 10px;
+    max-width: 90%; /* Set a maximum width */
+    width: 100%; /* Ensure it doesn't exceed the parent's width */
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Add space-between for even spacing */
+    transition: background-color 0.3s ease;
+    margin: 5px auto; /* Center the items horizontally */
+}
+
+.vault-contents .vault-item:hover {
+    background-color: #d1d1d1;
+}
+
+.vault-contents .text-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center align text horizontally */
+}
+
+.vault-contents .cred-name {
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-size: 1.2em;
+}
+
+.vault-contents .cred-username {
+    color: #6c757d;
+    font-size: 1.1em;
+}
+
+.vault-contents .checkbox-container {
+    margin-left: auto; /* Push checkbox container to the far right */
+    margin-right: 10px;
+}
+
+.vault-contents .vault-item-checkbox {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: #fff;
+    border: 2px solid #007bff;
+    border-radius: 4px;
+    outline: none;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.vault-contents .vault-item-checkbox:checked {
+    background-color: #007bff;
+    border-color: #007bff;
+    position: relative;
+}
+
+.vault-contents .vault-item-checkbox:checked::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 6px;
+    height: 12px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: translate(-50%, -55%) rotate(45deg); /* Adjusted translate to fine-tune the vertical centering */
+}

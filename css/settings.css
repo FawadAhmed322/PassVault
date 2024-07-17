@@ -1,0 +1,60 @@
+/* settings.css */
+
+.container {
+    flex: 1;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Center vertically */
+    overflow: hidden;
+    height: 100%; /* Ensure container takes full height */
+}
+
+h2 {
+    margin-bottom: 20px;
+}
+
+form {
+    width: 100%; /* Full width of the container */
+    max-width: 400px; /* Example maximum width for the form */
+}
+
+.form-group {
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+input[readonly] {
+    background-color: #f0f0f0; /* Light gray background for readonly fields */
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}

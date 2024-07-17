@@ -1,0 +1,121 @@
+/* Detail Styles */
+.container {
+    flex: 1; /* Ensure the container takes up remaining space */
+    display: flex;
+    flex-direction: column; /* Ensure a column layout */
+    align-items: center; /* Center align items horizontally */
+    justify-content: center; /* Center items vertically */
+}
+
+.detail-container {
+    width: 100%;
+    padding: 5px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative; /* For positioning the buttons */
+}
+
+.detail-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.title {
+    font-size: 1.5em; /* Similar to global styles */
+    font-weight: bold;
+}
+
+.detail-item {
+    background-color: #e9ecef;
+    padding: 10px;
+    border-radius: 10px; /* Match the border-radius of vault-item */
+    margin-bottom: 10px;
+    width: 100%; /* Ensure it doesn't exceed the parent's width */
+    max-width: 90%; /* Set a maximum width */
+    text-align: center; /* Center align text */
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    transition: background-color 0.3s ease;
+    margin: 5px auto; /* Center the items horizontally */
+    font-size: 1.1em; /* Slightly smaller font size for detail items */
+}
+
+.detail-item:hover {
+    background-color: #d1d1d1; /* Match the hover background-color of vault-item */
+}
+
+.detail-item strong {
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-size: 1.1em; /* Slightly smaller font size for strong text */
+}
+
+.detail-item input {
+    color: #6c757d;
+    font-size: 1.1em; /* Slightly smaller font size for input text */
+    background-color: white; /* Set background color to white */
+    border: none;
+    text-align: center;
+    border-radius: 5px; /* Add some border radius for a better look */
+    padding: 5px; /* Add some padding for better spacing */
+}
+
+.detail-item input[readonly] {
+    background-color: white; /* Ensure readonly inputs also have a white background */
+    border: none;
+    color: #6c757d;
+}
+
+.button-container {
+    display: flex;
+    gap: 10px;
+}
+
+#backButton {
+    width: 95%; /* Full width for back button */
+    margin-top: 10px; /* Consistent margin-top */
+    background-color: #fff;
+    color: #007bff;
+    border: solid;
+    border-color: #007bff;
+    border-width: 1px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px; /* Font size from new style */
+}
+
+#editButton, #togglePassword, #saveButton {
+    width: 35px; /* Width for icon buttons */
+    height: 35px; /* Height for icon buttons */
+    background-color: #007bff; /* Blue color for the other buttons */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px; /* Smaller font size for icons */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#editButton.editing {
+    background-color: #dc3545; /* Red color for cancel state */
+}
+
+#backButton:hover {
+    background-color: #0056b3;
+    color: #fff;
+}
+
+#editButton:hover, #togglePassword:hover, #saveButton:hover {
+    background-color: #0056b3; /* Darker blue for hover state */
+}
+
+#editButton.editing:hover {
+    background-color: #c82333; /* Darker red for hover state when editing */
+}
