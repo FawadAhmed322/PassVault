@@ -9,11 +9,14 @@
 
 .detail-container {
     width: 100%;
-    padding: 5px 20px;
+    padding: 5px; /* Reduced padding */
     display: flex;
     flex-direction: column;
     align-items: center;
     position: relative; /* For positioning the buttons */
+    background-color: white; /* Ensure the background is white */
+    border-radius: 10px; /* Add border radius for a better look */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add some shadow for depth */
 }
 
 .detail-header {
@@ -30,8 +33,8 @@
 }
 
 .detail-item {
-    background-color: #e9ecef;
-    padding: 10px;
+    background-color: white; /* Background color set to white */
+    padding: 5px; /* Reduced padding */
     border-radius: 10px; /* Match the border-radius of vault-item */
     margin-bottom: 10px;
     width: 100%; /* Ensure it doesn't exceed the parent's width */
@@ -43,10 +46,11 @@
     transition: background-color 0.3s ease;
     margin: 5px auto; /* Center the items horizontally */
     font-size: 1.1em; /* Slightly smaller font size for detail items */
+    border: 1px solid #ccc; /* Add border to match the inputs */
 }
 
 .detail-item:hover {
-    background-color: #d1d1d1; /* Match the hover background-color of vault-item */
+    background-color: #f2f2f2; /* Match the hover background-color */
 }
 
 .detail-item strong {
@@ -56,16 +60,32 @@
 }
 
 .detail-item input {
+    width: 100%; /* Full width */
+    padding: 5px; /* Reduced padding */
+    margin: 5px 0; /* Match margin with addCredential */
+    border: 1px solid #ccc; /* Match border with addCredential */
+    border-radius: 4px; /* Match border-radius with addCredential */
+    box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
     color: #6c757d;
     font-size: 1.1em; /* Slightly smaller font size for input text */
+    text-align: center; /* Center align text inside the input */
     background-color: white; /* Set background color to white */
-    border: none;
-    text-align: center;
-    border-radius: 5px; /* Add some border radius for a better look */
-    padding: 5px; /* Add some padding for better spacing */
 }
 
-.detail-item input[readonly] {
+.detail-item textarea {
+    width: 100%; /* Full width */
+    padding: 5px; /* Reduced padding */
+    margin: 5px 0; /* Match margin with addCredential */
+    border: 1px solid #ccc; /* Match border with addCredential */
+    border-radius: 4px; /* Match border-radius with addCredential */
+    box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
+    color: #6c757d;
+    font-size: 1.1em; /* Slightly smaller font size for input text */
+    text-align: left; /* Left align text inside the textarea */
+    background-color: white; /* Set background color to white */
+}
+
+.detail-item input[readonly], .detail-item textarea[readonly] {
     background-color: white; /* Ensure readonly inputs also have a white background */
     border: none;
     color: #6c757d;

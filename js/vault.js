@@ -8,10 +8,12 @@ async function fetchAndDisplayCredentials() {
     const vaultContents = document.getElementById('vault-contents');
 
     try {
-        const result = await getCredentials();
-        if (result.success) {
-            await saveData('credentials', result.credentials);
-            vaultContents.innerHTML = result.credentials.map((cred, index) => `
+        // Fetch the credentials from local storage
+        const credentials = await getData('credentials');
+        console.log(credentials)
+
+        if (credentials && credentials.length > 0) {
+            vaultContents.innerHTML = credentials.map((cred, index) => `
                 <div class="vault-item" data-index="${index}">
                     <div class="space-left"></div>
                     <div class="text-container" data-index="${index}">
@@ -35,7 +37,7 @@ async function fetchAndDisplayCredentials() {
             document.querySelectorAll('.vault-item-checkbox').forEach(item => {
                 item.addEventListener('change', (e) => {
                     const index = e.currentTarget.getAttribute('data-index');
-                    const credential = result.credentials[index];
+                    const credential = credentials[index];
                     if (e.currentTarget.checked) {
                         credentialsToDelete.push({
                             name: credential.name,
@@ -51,17 +53,19 @@ async function fetchAndDisplayCredentials() {
                     }
                 });
             });
+
+            return credentials;  // Return the fetched credentials
         } else {
-            console.error('Failed to fetch credentials:', result.message);
-            await saveData('credentials', []);
+            // Handle the case where there are no credentials available
+            console.error('No credentials available');
             vaultContents.innerHTML = '<div class="vault-item">No credentials available</div>';
-            alert(`Error: ${result.message}`);
+            return [];
         }
     } catch (error) {
         console.error('Error during fetching credentials:', error);
-        await saveData('credentials', []);
         vaultContents.innerHTML = '<div class="vault-item">No credentials available</div>';
         alert('An unexpected error occurred. Please try again.');
+        return [];
     }
 }
 
@@ -70,12 +74,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     const derivedKey = await getData('derivedKey');
 
     if (email && derivedKey) {
-        console.log('User is logged in');
         console.log('Email:', email);
         console.log('Derived Key:', derivedKey);
 
         // Fetch and display credentials on page load
-        await fetchAndDisplayCredentials();
+        let credentials = await fetchAndDisplayCredentials();
 
         const addCredentialButton = document.getElementById('add-credential-btn');
         if (addCredentialButton) {
@@ -98,8 +101,16 @@ document.addEventListener('DOMContentLoaded', async () => {
                             const deleteResult = await deleteCredentials(credentialsToDelete);
                             if (deleteResult.success) {
                                 alert(`${numChecked} item(s) deleted successfully`);
+
+                                // Remove deleted credentials from the local list
+                                credentials = credentials.filter(cred => !credentialsToDelete.some(delCred => delCred.name === cred.name && delCred.username === cred.username));
+                                
+                                // Save the remaining credentials
+                                await saveData('credentials', credentials);
+
                                 // Fetch and display credentials after successful deletion
                                 await fetchAndDisplayCredentials();
+
                                 // Clear the delete list
                                 credentialsToDelete.length = 0;
                             } else {

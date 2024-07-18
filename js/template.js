@@ -1,7 +1,7 @@
 import { logout } from '../utils/auth.js';
 
 document.addEventListener("DOMContentLoaded", () => {
-    console.log('DOMContentLoaded event fired');
+    // console.log('DOMContentLoaded event fired');
 
     fetch('../template.html')
         .then(response => {
@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
             return response.text();
         })
         .then(html => {
-            console.log('Fetched HTML:', html);
+            // console.log('Fetched HTML:', html);
 
             const tempDiv = document.createElement('div');
             tempDiv.innerHTML = html;
@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // Clone the common template content
             const clone = commonTemplate.content.cloneNode(true);
-            console.log('Cloned Template:', clone);
+            // console.log('Cloned Template:', clone);
 
             // Set the page title dynamically
             const pageTitle = clone.querySelector('#page-title');
@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (importExportButton) {
                 importExportButton.addEventListener('click', () => {
                     console.log('Import/Export button clicked');
-                    window.location.href = 'importExport.html';
+                    chrome.runtime.openOptionsPage();
                 });
             } else {
                 console.error('Import/Export button not found');

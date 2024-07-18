@@ -1,4 +1,4 @@
-import { getData } from '../utils/storage.js';
+import { getData, saveData } from '../utils/storage.js';
 import { addCredential } from '../utils/api.js';
 import { encrypt } from '../utils/cryptoUtils.js'; // Assuming you have a function for encryption
 
@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             // Encrypt the password using the derived key
             const encryptedPassword = await encrypt(password, derivedKey);
 
-            const credential = {
+            const serverCredential = {
                 name,
                 url,
                 username,
@@ -34,14 +34,25 @@ document.addEventListener('DOMContentLoaded', async () => {
                 note  // Adding the note field to the credential object
             };
 
-            // Save the credential to local storage (or handle it as required)
-            let credentials = JSON.parse(localStorage.getItem('credentials')) || [];
-            credentials.push(credential);
-            localStorage.setItem('credentials', JSON.stringify(credentials));
-
-            // Send the credentials to the server if needed
-            const result = await addCredential(credential);
+            // Send the credentials to the server
+            const result = await addCredential(serverCredential);
             if (result.success) {
+                // Save the credential to local storage with plaintext password
+                const localCredential = {
+                    name,
+                    url,
+                    username,
+                    password, // Save the plaintext password locally
+                    note
+                };
+
+                // Get existing credentials from storage
+                let credentials = await getData('credentials') || [];
+                credentials.push(localCredential);
+
+                // Save the updated credentials back to storage
+                await saveData('credentials', credentials);
+
                 alert('Credential added successfully');
                 window.location.href = 'vault.html';
             } else {

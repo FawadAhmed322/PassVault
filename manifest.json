@@ -19,9 +19,15 @@
     "permissions": [
         "storage",
         "cookies",
-        "http://localhost:5000"
+        "downloads",
+        "notifications",
+        "scripting"
+    ],
+    "host_permissions": [
+        "<all_urls>"
     ],
     "background": {
         "service_worker": "dist/background.js"
-    }
+    },
+    "options_page": "importExport.html"
 }

@@ -1,4 +1,9 @@
-const apiUrl = 'http://localhost:5000/api';
+import dotenv from 'dotenv';
+
+// Load environment variables from .env file
+dotenv.config();
+
+const apiUrl = process.env.API_URL;
 
 // Function to log in a user
 export async function loginApi(email, password) {
@@ -90,6 +95,30 @@ export async function addCredential(credential) {
         return { success: true, status: response.status, ...data };
     } catch (error) {
         console.error('Failed to add credential:', error);
+        return { success: false, status: 500, message: 'An internal error occurred. Please try again later.', error };
+    }
+}
+
+// Function to add multiple credentials to the server
+export async function addCredentials(credentials) {
+    try {
+        const response = await fetch(`${apiUrl}/add-credentials`, {
+            method: 'POST',
+            credentials: 'include', // Include cookies if needed for session
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ credentials })
+        });
+
+        const data = await response.json();
+        if (!response.ok) {
+            return { success: false, status: response.status, message: data.message || response.statusText, ...data };
+        }
+
+        return { success: true, status: response.status, ...data };
+    } catch (error) {
+        console.error('Failed to add credentials:', error);
         return { success: false, status: 500, message: 'An internal error occurred. Please try again later.', error };
     }
 }

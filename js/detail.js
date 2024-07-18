@@ -17,20 +17,11 @@ document.addEventListener('DOMContentLoaded', async () => {
             console.log(`Credential at index ${index}:`, credential);
 
             if (credential) {
-                const derivedKey = await getData('derivedKey');
-                if (!derivedKey) {
-                    throw new Error('Derived key not found');
-                }
-                console.log('Derived key found:', derivedKey);
-
-                const decryptedPassword = await decrypt(credential.password, derivedKey);
-                console.log('Decrypted password:', decryptedPassword);
-
                 document.getElementById('cred-name').value = credential.name;
                 document.getElementById('cred-url').value = credential.url || 'N/A';
                 document.getElementById('cred-username').value = credential.username;
-                document.getElementById('cred-password').value = decryptedPassword;
-                document.getElementById('cred-password').setAttribute('data-password', decryptedPassword);
+                document.getElementById('cred-password').value = credential.password;
+                document.getElementById('cred-password').setAttribute('data-password', credential.password);
                 document.getElementById('cred-password').type = 'password';
                 document.getElementById('cred-note').value = credential.note || ''; // Set the note field
             } else {
