@@ -5,6 +5,8 @@ import terser from '@rollup/plugin-terser';
 import postcss from 'rollup-plugin-postcss';
 import { sync as globSync } from 'glob';
 import path from 'path';
+import json from '@rollup/plugin-json';
+import polyfillNode from 'rollup-plugin-polyfill-node';
 import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -23,12 +25,14 @@ const generateEntryPoints = (pattern, format) => {
         plugins: [
             resolve(),
             commonjs(),
+            json(),
             babel({ babelHelpers: 'bundled' }),
             terser(),
             postcss({
                 extract: true,
                 minimize: true,
             }),
+            polyfillNode(), // Adding the polyfillNode plugin to handle Node.js built-ins
         ]
     }));
 };
